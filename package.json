@@ -1,0 +1,16 @@
+{
+  "name": "screen-time",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "ts-node ./src/bot.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "grammy": "^1.20.3",
+    "ts-node": "^10.9.2"
+  }
+}
