@@ -1,6 +1,6 @@
 # 🎬 Screen-Time 📺
 
-Screen-Time is a Telegram bot built with Python that provides movie and TV show updates. With Screen-Time, you can easily find information about the latest movies and TV shows, watch trailers 🍿, and get notified 📩 about upcoming releases.
+Screen-Time is a Telegram bot built with Typescript that provides movie and TV show updates. With Screen-Time, you can easily find information about the latest movies and TV shows, watch trailers 🍿, and get notified 📩 about upcoming releases.
 
 ## 🚀 Features
 
@@ -24,8 +24,6 @@ Screen-Time bot is currently going through a rewrite to function on vercel serve
 ![Search](https://imgur.com/J0ySlOI.png "Search")
 
 ## 🛠️ Getting Started
-
-To get started developing Screen-Time, you will need to have Python 3.x installed on your machine.
 
 1. Clone the repository:
 
