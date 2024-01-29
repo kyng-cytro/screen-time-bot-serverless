@@ -21,3 +21,10 @@ export const customSeriesKeyboard = new InlineKeyboard()
   .add({ text: "🚫 Cancel Subscription", callback_data: "show_cancel" })
   .row()
   .add({ text: "ℹ️ Details", callback_data: "show_sub_details" });
+
+export const searchResultKeyboard = (id: string) => {
+  return new InlineKeyboard().add({
+    text: "➕ Add To Custom List",
+    callback_data: `add_${id}`,
+  });
+};
