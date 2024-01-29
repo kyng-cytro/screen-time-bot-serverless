@@ -10,15 +10,52 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(cuid())
-  userId         Int      @unique @map("user_id")
-  name           String
-  custom         Boolean  @default(false)
-  seriesSub      Boolean  @default(false) @map("series_sub")
-  kValue         String?  @map("k_value")
-  accountId      String?  @map("account_id")
-  customUsername String?  @map("custom_username")
-  customPassword String?  @map("custom_password")
-  updatedAt      DateTime @default(now()) @map("updated_at")
-  createdAt      DateTime @default(now()) @map("created_at")
+  id        String      @id @default(cuid())
+  userId    Int         @unique @map("user_id")
+  name      String
+  custom    Boolean     @default(false)
+  seriesSub Boolean     @default(false) @map("series_sub")
+  account   ScreenTime?
+  updatedAt DateTime    @default(now()) @map("updated_at")
+  createdAt DateTime    @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+model ScreenTime {
+  id        String   @id @default(cuid())
+  ownerId   String   @unique
+  kValue    String?  @map("k_value")
+  accountId String?  @map("account_id")
+  owner     User     @relation(fields: [ownerId], references: [id])
+  updatedAt DateTime @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("screen_time_accounts")
+}
+
+model Movie {
+  id        String   @id @default(cuid())
+  link      String
+  image     String
+  title     String
+  date      String
+  summary   String
+  updatedAt DateTime @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("movies")
+}
+
+model Show {
+  id        String   @id @default(cuid())
+  link      String
+  image     String
+  title     String
+  date      String
+  summary   String
+  updatedAt DateTime @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("shows")
 }
