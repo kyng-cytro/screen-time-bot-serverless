@@ -113,10 +113,37 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   custom: 'custom',
   seriesSub: 'seriesSub',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ScreenTimeScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
   kValue: 'kValue',
   accountId: 'accountId',
-  customUsername: 'customUsername',
-  customPassword: 'customPassword',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.MovieScalarFieldEnum = {
+  id: 'id',
+  link: 'link',
+  image: 'image',
+  title: 'title',
+  date: 'date',
+  summary: 'summary',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ShowScalarFieldEnum = {
+  id: 'id',
+  link: 'link',
+  image: 'image',
+  title: 'title',
+  date: 'date',
+  summary: 'summary',
   updatedAt: 'updatedAt',
   createdAt: 'createdAt'
 };
@@ -138,7 +165,10 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  ScreenTime: 'ScreenTime',
+  Movie: 'Movie',
+  Show: 'Show'
 };
 
 /**
