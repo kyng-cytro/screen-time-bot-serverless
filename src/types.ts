@@ -1,7 +1,8 @@
 import type { Context } from "grammy";
 import type { Movie, Prisma, Show } from "../prisma/generated/client";
+import { HydrateFlavor } from "@grammyjs/hydrate";
 
-export interface GrammyContext extends Context {
+export interface GrammyContext extends HydrateFlavor<Context> {
   first_name?: string;
   user_name?: string;
   user_id?: number;

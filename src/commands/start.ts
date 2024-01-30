@@ -1,4 +1,4 @@
-import { homeLayout } from "../responses/button-layouts";
+import { homeKeyboard } from "../responses/keyboards";
 import { GrammyContext } from "../types";
 import { addUser } from "../utils/database";
 import { randomGreeting } from "../utils/helpers";
@@ -9,7 +9,7 @@ export const startCallBack = async (ctx: GrammyContext) => {
       `*${randomGreeting()} ${ctx.first_name}* Welcome back to Screen Time 🍿`,
       {
         parse_mode: "Markdown",
-        reply_markup: homeLayout,
+        reply_markup: homeKeyboard,
       },
     );
 
@@ -19,7 +19,7 @@ export const startCallBack = async (ctx: GrammyContext) => {
     `*${randomGreeting()} ${ctx.first_name}* Welcome to Screen Time 🍿`,
     {
       parse_mode: "Markdown",
-      reply_markup: homeLayout,
+      reply_markup: homeKeyboard,
     },
   );
 };

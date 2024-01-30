@@ -1,5 +1,5 @@
-import { homeLayout } from "../responses/button-layouts";
-import { searchResultKeyboard } from "../responses/inline-keyboards";
+import { homeKeyboard } from "../responses/keyboards";
+import { searchResultButton } from "../responses/buttons";
 import { GrammyContext } from "../types";
 
 export const searchCallBack = async (ctx: GrammyContext) => {
@@ -8,7 +8,7 @@ export const searchCallBack = async (ctx: GrammyContext) => {
   if (!query)
     return await ctx.reply(
       "🤔 You didn't pass in a valid TV-Show (search <name of tv-show>)",
-      { reply_markup: homeLayout },
+      { reply_markup: homeKeyboard },
     );
 
   const msg = await ctx.reply("⌛ Hold on we are fetching results...", {
@@ -28,16 +28,11 @@ export const searchCallBack = async (ctx: GrammyContext) => {
   ];
 
   if (!results.length)
-    return await ctx.api.editMessageText(
-      ctx.user_id!,
-      msg.message_id,
-      `No Shows found for the name *${query}*`,
-      { parse_mode: "Markdown" },
-    );
+    return await msg.editText(`No Shows found for the name *${query}*`, {
+      parse_mode: "Markdown",
+    });
 
-  await ctx.api.editMessageText(
-    ctx.user_id!,
-    msg.message_id,
+  await msg.editText(
     `Here are the top ${results.length} results for *${query}*`,
     { parse_mode: "Markdown" },
   );
@@ -46,7 +41,7 @@ export const searchCallBack = async (ctx: GrammyContext) => {
     await ctx.replyWithPhoto(item.image, {
       caption: `*${item.name}*\n\n${item.summary}\n\n[👀 Read More](${item.link})`,
       parse_mode: "Markdown",
-      reply_markup: searchResultKeyboard(item.show_id),
+      reply_markup: searchResultButton(item.show_id),
     });
   }
 };

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grammyjs/hydrate": "^1.4.1",
     "@prisma/client": "5.8.1",
     "@vercel/node": "^3.0.17",
     "cookiejar": "^2.1.4",

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { Bot } from "grammy";
+import { hydrate } from "@grammyjs/hydrate";
 import { BOT_TOKEN, ENV, GREETINGS } from "./constants";
 import { GrammyContext } from "./types";
 import { helpCallBack } from "./commands/help";
@@ -18,6 +19,8 @@ import {
 
 export const bot = new Bot<GrammyContext>(BOT_TOKEN);
 
+bot.use(hydrate());
+
 bot.use(updateContext);
 
 bot.command("help", helpCallBack);
@@ -28,23 +31,20 @@ bot.command("start", startCallBack);
 
 bot.command("search", searchCallBack);
 
+bot.hears("📽 Movies Updates", moviesUpdateResponse);
+
+bot.hears("🎬 TV-Shows Updates", tvShowsUpdateResponse);
+
+bot.hears("Hottest TV-Shows Daily", hottestTvShowsDailyResponse);
+
+bot.hears("Custom List Of Shows", customListOfShowsResponse);
+
+bot.hears("🚫 Cancel", cancelResponse);
+
+bot.hears("ℹ️  Help", helpCallBack);
+
 bot.on("msg:text", async (ctx) => {
   const message = ctx.msg.text;
-
-  if (message === "📽 Movies Updates") return await moviesUpdateResponse(ctx);
-
-  if (message === "🎬 TV-Shows Updates")
-    return await tvShowsUpdateResponse(ctx);
-
-  if (message === "Hottest TV-Shows Daily")
-    return await hottestTvShowsDailyResponse(ctx);
-
-  if (message === "Custom List Of Shows")
-    return await customListOfShowsResponse(ctx);
-
-  if (message === "🚫 Cancel") return await cancelResponse(ctx);
-
-  if (message === "ℹ️ Help") return await helpCallBack(ctx);
 
   if (GREETINGS.some((substring) => message.toLowerCase().includes(substring)))
     return await greetingResponse(ctx);
