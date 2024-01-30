@@ -5,17 +5,13 @@ import {
   createScreenTimeAccount,
   getScreenTimeAccountInfo,
 } from "../utils/screen-time";
-import { homeLayout, removeLayout, seriesLayout } from "./button-layouts";
-import {
-  customSeriesKeyboard,
-  moviesKeyboard,
-  seriesKeyboard,
-} from "./inline-keyboards";
+import { homeKeyboard, seriesKeyboard } from "./keyboards";
+import { customSeriesButtons, moviesButtons, seriesButtons } from "./buttons";
 
 export const moviesUpdateResponse = async (ctx: GrammyContext) => {
   return await ctx.reply(
     "Movie Updates are sent to our group weekly (Saturdays 10am W.A.T)",
-    { reply_markup: moviesKeyboard },
+    { reply_markup: moviesButtons },
   );
 };
 
@@ -32,12 +28,12 @@ export const tvShowsUpdateResponse = async (ctx: GrammyContext) => {
       }* subscription.`,
       {
         parse_mode: "Markdown",
-        reply_markup: ctx.user.custom ? customSeriesKeyboard : seriesKeyboard,
+        reply_markup: ctx.user.custom ? customSeriesButtons : seriesButtons,
       },
     );
 
   return await ctx.reply("Alright Please Select A Subscription Type.", {
-    reply_markup: seriesLayout,
+    reply_markup: seriesKeyboard,
   });
 };
 
@@ -50,7 +46,7 @@ export const hottestTvShowsDailyResponse = async (ctx: GrammyContext) => {
   await subscribeUser({ id: ctx.user?.id, type: "reg" });
   return await ctx.reply(
     "✅ Done. You will now get daily updates on the latest and hottest episodes",
-    { reply_markup: homeLayout },
+    { reply_markup: homeKeyboard },
   );
 };
 
@@ -69,7 +65,7 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
     });
     return await ctx.reply(
       "🤔 Seems like you've once had a Custom List Of Shows subscription. We will be using that.\n\nRemember you can use /search <name of tv-show> to search shows to follow",
-      { reply_markup: homeLayout },
+      { reply_markup: homeKeyboard },
     );
   }
 
@@ -88,7 +84,7 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
     return await ctx.reply(
       "🤔 Seems like you've once had a Custom List Of Shows subscription. We will be using that.\n\nRemember you can use /search <name of tv-show> to search shows to follow",
       {
-        reply_markup: homeLayout,
+        reply_markup: homeKeyboard,
       },
     );
   }
@@ -100,7 +96,7 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
     return await ctx.reply(
       "😔 Something went wrong setting up your account. Please use /start to restart the bot and try again",
       {
-        reply_markup: removeLayout,
+        reply_markup: { remove_keyboard: true },
       },
     );
 
@@ -113,19 +109,19 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
 
   return await ctx.reply(
     "✅ Done. Use '/search <name of tv-show>' to search shows to follow.",
-    { reply_markup: homeLayout },
+    { reply_markup: homeKeyboard },
   );
 };
 
 export const cancelResponse = async (ctx: GrammyContext) => {
   return await ctx.reply("🍿 Main Menu", {
-    reply_markup: homeLayout,
+    reply_markup: homeKeyboard,
   });
 };
 
 export const greetingResponse = async (ctx: GrammyContext) => {
   return ctx.reply(`*${randomGreeting()} ${ctx.first_name}*`, {
     parse_mode: "Markdown",
-    reply_markup: homeLayout,
+    reply_markup: homeKeyboard,
   });
 };
