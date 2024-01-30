@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model FollowingItem
+ * 
+ */
+export type FollowingItem = $Result.DefaultSelection<Prisma.$FollowingItemPayload>
+/**
  * Model ScreenTime
  * 
  */
@@ -165,6 +170,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.followingItem`: Exposes CRUD operations for the **FollowingItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FollowingItems
+    * const followingItems = await prisma.followingItem.findMany()
+    * ```
+    */
+  get followingItem(): Prisma.FollowingItemDelegate<ExtArgs>;
 
   /**
    * `prisma.screenTime`: Exposes CRUD operations for the **ScreenTime** model.
@@ -666,6 +681,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    FollowingItem: 'FollowingItem',
     ScreenTime: 'ScreenTime',
     Movie: 'Movie',
     Show: 'Show'
@@ -685,7 +701,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'screenTime' | 'movie' | 'show'
+      modelProps: 'user' | 'followingItem' | 'screenTime' | 'movie' | 'show'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -752,6 +768,72 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>,
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      FollowingItem: {
+        payload: Prisma.$FollowingItemPayload<ExtArgs>
+        fields: Prisma.FollowingItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FollowingItemFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FollowingItemFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          findFirst: {
+            args: Prisma.FollowingItemFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FollowingItemFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          findMany: {
+            args: Prisma.FollowingItemFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>[]
+          }
+          create: {
+            args: Prisma.FollowingItemCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          createMany: {
+            args: Prisma.FollowingItemCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.FollowingItemDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          update: {
+            args: Prisma.FollowingItemUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.FollowingItemDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FollowingItemUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.FollowingItemUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FollowingItemPayload>
+          }
+          aggregate: {
+            args: Prisma.FollowingItemAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateFollowingItem>
+          }
+          groupBy: {
+            args: Prisma.FollowingItemGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<FollowingItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FollowingItemCountArgs<ExtArgs>,
+            result: $Utils.Optional<FollowingItemCountAggregateOutputType> | number
           }
         }
       }
@@ -1097,6 +1179,73 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    following: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    following?: boolean | UserCountOutputTypeCountFollowingArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFollowingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowingItemWhereInput
+  }
+
+
+
+  /**
+   * Count Type FollowingItemCountOutputType
+   */
+
+  export type FollowingItemCountOutputType = {
+    users: number
+  }
+
+  export type FollowingItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | FollowingItemCountOutputTypeCountUsersArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * FollowingItemCountOutputType without action
+   */
+  export type FollowingItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItemCountOutputType
+     */
+    select?: FollowingItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * FollowingItemCountOutputType without action
+   */
+  export type FollowingItemCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
+
 
   /**
    * Models
@@ -1317,6 +1466,8 @@ export namespace Prisma {
     updatedAt?: boolean
     createdAt?: boolean
     account?: boolean | User$accountArgs<ExtArgs>
+    following?: boolean | User$followingArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1331,6 +1482,8 @@ export namespace Prisma {
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     account?: boolean | User$accountArgs<ExtArgs>
+    following?: boolean | User$followingArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
@@ -1338,6 +1491,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       account: Prisma.$ScreenTimePayload<ExtArgs> | null
+      following: Prisma.$FollowingItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1714,6 +1868,8 @@ export namespace Prisma {
 
     account<T extends User$accountArgs<ExtArgs> = {}>(args?: Subset<T, User$accountArgs<ExtArgs>>): Prisma__ScreenTimeClient<$Result.GetResult<Prisma.$ScreenTimePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
+    following<T extends User$followingArgs<ExtArgs> = {}>(args?: Subset<T, User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2077,6 +2233,27 @@ export namespace Prisma {
 
 
   /**
+   * User.following
+   */
+  export type User$followingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    where?: FollowingItemWhereInput
+    orderBy?: FollowingItemOrderByWithRelationInput | FollowingItemOrderByWithRelationInput[]
+    cursor?: FollowingItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FollowingItemScalarFieldEnum | FollowingItemScalarFieldEnum[]
+  }
+
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2088,6 +2265,947 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model FollowingItem
+   */
+
+  export type AggregateFollowingItem = {
+    _count: FollowingItemCountAggregateOutputType | null
+    _min: FollowingItemMinAggregateOutputType | null
+    _max: FollowingItemMaxAggregateOutputType | null
+  }
+
+  export type FollowingItemMinAggregateOutputType = {
+    id: string | null
+    itemId: string | null
+    name: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FollowingItemMaxAggregateOutputType = {
+    id: string | null
+    itemId: string | null
+    name: string | null
+    updatedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type FollowingItemCountAggregateOutputType = {
+    id: number
+    itemId: number
+    name: number
+    updatedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FollowingItemMinAggregateInputType = {
+    id?: true
+    itemId?: true
+    name?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type FollowingItemMaxAggregateInputType = {
+    id?: true
+    itemId?: true
+    name?: true
+    updatedAt?: true
+    createdAt?: true
+  }
+
+  export type FollowingItemCountAggregateInputType = {
+    id?: true
+    itemId?: true
+    name?: true
+    updatedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FollowingItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FollowingItem to aggregate.
+     */
+    where?: FollowingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowingItems to fetch.
+     */
+    orderBy?: FollowingItemOrderByWithRelationInput | FollowingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FollowingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FollowingItems
+    **/
+    _count?: true | FollowingItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FollowingItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FollowingItemMaxAggregateInputType
+  }
+
+  export type GetFollowingItemAggregateType<T extends FollowingItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateFollowingItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFollowingItem[P]>
+      : GetScalarType<T[P], AggregateFollowingItem[P]>
+  }
+
+
+
+
+  export type FollowingItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowingItemWhereInput
+    orderBy?: FollowingItemOrderByWithAggregationInput | FollowingItemOrderByWithAggregationInput[]
+    by: FollowingItemScalarFieldEnum[] | FollowingItemScalarFieldEnum
+    having?: FollowingItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FollowingItemCountAggregateInputType | true
+    _min?: FollowingItemMinAggregateInputType
+    _max?: FollowingItemMaxAggregateInputType
+  }
+
+  export type FollowingItemGroupByOutputType = {
+    id: string
+    itemId: string
+    name: string
+    updatedAt: Date
+    createdAt: Date
+    _count: FollowingItemCountAggregateOutputType | null
+    _min: FollowingItemMinAggregateOutputType | null
+    _max: FollowingItemMaxAggregateOutputType | null
+  }
+
+  type GetFollowingItemGroupByPayload<T extends FollowingItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FollowingItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FollowingItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FollowingItemGroupByOutputType[P]>
+            : GetScalarType<T[P], FollowingItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FollowingItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemId?: boolean
+    name?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+    users?: boolean | FollowingItem$usersArgs<ExtArgs>
+    _count?: boolean | FollowingItemCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["followingItem"]>
+
+  export type FollowingItemSelectScalar = {
+    id?: boolean
+    itemId?: boolean
+    name?: boolean
+    updatedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type FollowingItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | FollowingItem$usersArgs<ExtArgs>
+    _count?: boolean | FollowingItemCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $FollowingItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FollowingItem"
+    objects: {
+      users: Prisma.$UserPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      itemId: string
+      name: string
+      updatedAt: Date
+      createdAt: Date
+    }, ExtArgs["result"]["followingItem"]>
+    composites: {}
+  }
+
+
+  type FollowingItemGetPayload<S extends boolean | null | undefined | FollowingItemDefaultArgs> = $Result.GetResult<Prisma.$FollowingItemPayload, S>
+
+  type FollowingItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<FollowingItemFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: FollowingItemCountAggregateInputType | true
+    }
+
+  export interface FollowingItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FollowingItem'], meta: { name: 'FollowingItem' } }
+    /**
+     * Find zero or one FollowingItem that matches the filter.
+     * @param {FollowingItemFindUniqueArgs} args - Arguments to find a FollowingItem
+     * @example
+     * // Get one FollowingItem
+     * const followingItem = await prisma.followingItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends FollowingItemFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemFindUniqueArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one FollowingItem that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {FollowingItemFindUniqueOrThrowArgs} args - Arguments to find a FollowingItem
+     * @example
+     * // Get one FollowingItem
+     * const followingItem = await prisma.followingItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends FollowingItemFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first FollowingItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemFindFirstArgs} args - Arguments to find a FollowingItem
+     * @example
+     * // Get one FollowingItem
+     * const followingItem = await prisma.followingItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends FollowingItemFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemFindFirstArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first FollowingItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemFindFirstOrThrowArgs} args - Arguments to find a FollowingItem
+     * @example
+     * // Get one FollowingItem
+     * const followingItem = await prisma.followingItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends FollowingItemFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more FollowingItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FollowingItems
+     * const followingItems = await prisma.followingItem.findMany()
+     * 
+     * // Get first 10 FollowingItems
+     * const followingItems = await prisma.followingItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const followingItemWithIdOnly = await prisma.followingItem.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends FollowingItemFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a FollowingItem.
+     * @param {FollowingItemCreateArgs} args - Arguments to create a FollowingItem.
+     * @example
+     * // Create one FollowingItem
+     * const FollowingItem = await prisma.followingItem.create({
+     *   data: {
+     *     // ... data to create a FollowingItem
+     *   }
+     * })
+     * 
+    **/
+    create<T extends FollowingItemCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemCreateArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many FollowingItems.
+     *     @param {FollowingItemCreateManyArgs} args - Arguments to create many FollowingItems.
+     *     @example
+     *     // Create many FollowingItems
+     *     const followingItem = await prisma.followingItem.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends FollowingItemCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FollowingItem.
+     * @param {FollowingItemDeleteArgs} args - Arguments to delete one FollowingItem.
+     * @example
+     * // Delete one FollowingItem
+     * const FollowingItem = await prisma.followingItem.delete({
+     *   where: {
+     *     // ... filter to delete one FollowingItem
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends FollowingItemDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemDeleteArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one FollowingItem.
+     * @param {FollowingItemUpdateArgs} args - Arguments to update one FollowingItem.
+     * @example
+     * // Update one FollowingItem
+     * const followingItem = await prisma.followingItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends FollowingItemUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemUpdateArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more FollowingItems.
+     * @param {FollowingItemDeleteManyArgs} args - Arguments to filter FollowingItems to delete.
+     * @example
+     * // Delete a few FollowingItems
+     * const { count } = await prisma.followingItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends FollowingItemDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FollowingItemDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FollowingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FollowingItems
+     * const followingItem = await prisma.followingItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends FollowingItemUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FollowingItem.
+     * @param {FollowingItemUpsertArgs} args - Arguments to update or create a FollowingItem.
+     * @example
+     * // Update or create a FollowingItem
+     * const followingItem = await prisma.followingItem.upsert({
+     *   create: {
+     *     // ... data to create a FollowingItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FollowingItem we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends FollowingItemUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, FollowingItemUpsertArgs<ExtArgs>>
+    ): Prisma__FollowingItemClient<$Result.GetResult<Prisma.$FollowingItemPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of FollowingItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemCountArgs} args - Arguments to filter FollowingItems to count.
+     * @example
+     * // Count the number of FollowingItems
+     * const count = await prisma.followingItem.count({
+     *   where: {
+     *     // ... the filter for the FollowingItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends FollowingItemCountArgs>(
+      args?: Subset<T, FollowingItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FollowingItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FollowingItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FollowingItemAggregateArgs>(args: Subset<T, FollowingItemAggregateArgs>): Prisma.PrismaPromise<GetFollowingItemAggregateType<T>>
+
+    /**
+     * Group by FollowingItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowingItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FollowingItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FollowingItemGroupByArgs['orderBy'] }
+        : { orderBy?: FollowingItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FollowingItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFollowingItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FollowingItem model
+   */
+  readonly fields: FollowingItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FollowingItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FollowingItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    users<T extends FollowingItem$usersArgs<ExtArgs> = {}>(args?: Subset<T, FollowingItem$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the FollowingItem model
+   */ 
+  interface FollowingItemFieldRefs {
+    readonly id: FieldRef<"FollowingItem", 'String'>
+    readonly itemId: FieldRef<"FollowingItem", 'String'>
+    readonly name: FieldRef<"FollowingItem", 'String'>
+    readonly updatedAt: FieldRef<"FollowingItem", 'DateTime'>
+    readonly createdAt: FieldRef<"FollowingItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * FollowingItem findUnique
+   */
+  export type FollowingItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowingItem to fetch.
+     */
+    where: FollowingItemWhereUniqueInput
+  }
+
+
+  /**
+   * FollowingItem findUniqueOrThrow
+   */
+  export type FollowingItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowingItem to fetch.
+     */
+    where: FollowingItemWhereUniqueInput
+  }
+
+
+  /**
+   * FollowingItem findFirst
+   */
+  export type FollowingItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowingItem to fetch.
+     */
+    where?: FollowingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowingItems to fetch.
+     */
+    orderBy?: FollowingItemOrderByWithRelationInput | FollowingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FollowingItems.
+     */
+    cursor?: FollowingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FollowingItems.
+     */
+    distinct?: FollowingItemScalarFieldEnum | FollowingItemScalarFieldEnum[]
+  }
+
+
+  /**
+   * FollowingItem findFirstOrThrow
+   */
+  export type FollowingItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowingItem to fetch.
+     */
+    where?: FollowingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowingItems to fetch.
+     */
+    orderBy?: FollowingItemOrderByWithRelationInput | FollowingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FollowingItems.
+     */
+    cursor?: FollowingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowingItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FollowingItems.
+     */
+    distinct?: FollowingItemScalarFieldEnum | FollowingItemScalarFieldEnum[]
+  }
+
+
+  /**
+   * FollowingItem findMany
+   */
+  export type FollowingItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowingItems to fetch.
+     */
+    where?: FollowingItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowingItems to fetch.
+     */
+    orderBy?: FollowingItemOrderByWithRelationInput | FollowingItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FollowingItems.
+     */
+    cursor?: FollowingItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowingItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowingItems.
+     */
+    skip?: number
+    distinct?: FollowingItemScalarFieldEnum | FollowingItemScalarFieldEnum[]
+  }
+
+
+  /**
+   * FollowingItem create
+   */
+  export type FollowingItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FollowingItem.
+     */
+    data: XOR<FollowingItemCreateInput, FollowingItemUncheckedCreateInput>
+  }
+
+
+  /**
+   * FollowingItem createMany
+   */
+  export type FollowingItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FollowingItems.
+     */
+    data: FollowingItemCreateManyInput | FollowingItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * FollowingItem update
+   */
+  export type FollowingItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FollowingItem.
+     */
+    data: XOR<FollowingItemUpdateInput, FollowingItemUncheckedUpdateInput>
+    /**
+     * Choose, which FollowingItem to update.
+     */
+    where: FollowingItemWhereUniqueInput
+  }
+
+
+  /**
+   * FollowingItem updateMany
+   */
+  export type FollowingItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FollowingItems.
+     */
+    data: XOR<FollowingItemUpdateManyMutationInput, FollowingItemUncheckedUpdateManyInput>
+    /**
+     * Filter which FollowingItems to update
+     */
+    where?: FollowingItemWhereInput
+  }
+
+
+  /**
+   * FollowingItem upsert
+   */
+  export type FollowingItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FollowingItem to update in case it exists.
+     */
+    where: FollowingItemWhereUniqueInput
+    /**
+     * In case the FollowingItem found by the `where` argument doesn't exist, create a new FollowingItem with this data.
+     */
+    create: XOR<FollowingItemCreateInput, FollowingItemUncheckedCreateInput>
+    /**
+     * In case the FollowingItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FollowingItemUpdateInput, FollowingItemUncheckedUpdateInput>
+  }
+
+
+  /**
+   * FollowingItem delete
+   */
+  export type FollowingItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
+    /**
+     * Filter which FollowingItem to delete.
+     */
+    where: FollowingItemWhereUniqueInput
+  }
+
+
+  /**
+   * FollowingItem deleteMany
+   */
+  export type FollowingItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FollowingItems to delete
+     */
+    where?: FollowingItemWhereInput
+  }
+
+
+  /**
+   * FollowingItem.users
+   */
+  export type FollowingItem$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * FollowingItem without action
+   */
+  export type FollowingItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowingItem
+     */
+    select?: FollowingItemSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FollowingItemInclude<ExtArgs> | null
   }
 
 
@@ -2234,8 +3352,8 @@ export namespace Prisma {
   export type ScreenTimeGroupByOutputType = {
     id: string
     ownerId: string
-    kValue: string | null
-    accountId: string | null
+    kValue: string
+    accountId: string
     updatedAt: Date
     createdAt: Date
     _count: ScreenTimeCountAggregateOutputType | null
@@ -2289,8 +3407,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       ownerId: string
-      kValue: string | null
-      accountId: string | null
+      kValue: string
+      accountId: string
       updatedAt: Date
       createdAt: Date
     }, ExtArgs["result"]["screenTime"]>
@@ -4854,6 +5972,17 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const FollowingItemScalarFieldEnum: {
+    id: 'id',
+    itemId: 'itemId',
+    name: 'name',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type FollowingItemScalarFieldEnum = (typeof FollowingItemScalarFieldEnum)[keyof typeof FollowingItemScalarFieldEnum]
+
+
   export const ScreenTimeScalarFieldEnum: {
     id: 'id',
     ownerId: 'ownerId',
@@ -4908,14 +6037,6 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -5001,6 +6122,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     account?: XOR<ScreenTimeNullableRelationFilter, ScreenTimeWhereInput> | null
+    following?: FollowingItemListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5012,6 +6134,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     createdAt?: SortOrder
     account?: ScreenTimeOrderByWithRelationInput
+    following?: FollowingItemOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5026,6 +6149,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     account?: XOR<ScreenTimeNullableRelationFilter, ScreenTimeWhereInput> | null
+    following?: FollowingItemListRelationFilter
   }, "id" | "userId">
 
   export type UserOrderByWithAggregationInput = {
@@ -5056,14 +6180,69 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type FollowingItemWhereInput = {
+    AND?: FollowingItemWhereInput | FollowingItemWhereInput[]
+    OR?: FollowingItemWhereInput[]
+    NOT?: FollowingItemWhereInput | FollowingItemWhereInput[]
+    id?: StringFilter<"FollowingItem"> | string
+    itemId?: StringFilter<"FollowingItem"> | string
+    name?: StringFilter<"FollowingItem"> | string
+    updatedAt?: DateTimeFilter<"FollowingItem"> | Date | string
+    createdAt?: DateTimeFilter<"FollowingItem"> | Date | string
+    users?: UserListRelationFilter
+  }
+
+  export type FollowingItemOrderByWithRelationInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    name?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+    users?: UserOrderByRelationAggregateInput
+  }
+
+  export type FollowingItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    itemId?: string
+    AND?: FollowingItemWhereInput | FollowingItemWhereInput[]
+    OR?: FollowingItemWhereInput[]
+    NOT?: FollowingItemWhereInput | FollowingItemWhereInput[]
+    name?: StringFilter<"FollowingItem"> | string
+    updatedAt?: DateTimeFilter<"FollowingItem"> | Date | string
+    createdAt?: DateTimeFilter<"FollowingItem"> | Date | string
+    users?: UserListRelationFilter
+  }, "id" | "itemId">
+
+  export type FollowingItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    name?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+    _count?: FollowingItemCountOrderByAggregateInput
+    _max?: FollowingItemMaxOrderByAggregateInput
+    _min?: FollowingItemMinOrderByAggregateInput
+  }
+
+  export type FollowingItemScalarWhereWithAggregatesInput = {
+    AND?: FollowingItemScalarWhereWithAggregatesInput | FollowingItemScalarWhereWithAggregatesInput[]
+    OR?: FollowingItemScalarWhereWithAggregatesInput[]
+    NOT?: FollowingItemScalarWhereWithAggregatesInput | FollowingItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FollowingItem"> | string
+    itemId?: StringWithAggregatesFilter<"FollowingItem"> | string
+    name?: StringWithAggregatesFilter<"FollowingItem"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FollowingItem"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"FollowingItem"> | Date | string
+  }
+
   export type ScreenTimeWhereInput = {
     AND?: ScreenTimeWhereInput | ScreenTimeWhereInput[]
     OR?: ScreenTimeWhereInput[]
     NOT?: ScreenTimeWhereInput | ScreenTimeWhereInput[]
     id?: StringFilter<"ScreenTime"> | string
     ownerId?: StringFilter<"ScreenTime"> | string
-    kValue?: StringNullableFilter<"ScreenTime"> | string | null
-    accountId?: StringNullableFilter<"ScreenTime"> | string | null
+    kValue?: StringFilter<"ScreenTime"> | string
+    accountId?: StringFilter<"ScreenTime"> | string
     updatedAt?: DateTimeFilter<"ScreenTime"> | Date | string
     createdAt?: DateTimeFilter<"ScreenTime"> | Date | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -5072,8 +6251,8 @@ export namespace Prisma {
   export type ScreenTimeOrderByWithRelationInput = {
     id?: SortOrder
     ownerId?: SortOrder
-    kValue?: SortOrderInput | SortOrder
-    accountId?: SortOrderInput | SortOrder
+    kValue?: SortOrder
+    accountId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     owner?: UserOrderByWithRelationInput
@@ -5085,8 +6264,8 @@ export namespace Prisma {
     AND?: ScreenTimeWhereInput | ScreenTimeWhereInput[]
     OR?: ScreenTimeWhereInput[]
     NOT?: ScreenTimeWhereInput | ScreenTimeWhereInput[]
-    kValue?: StringNullableFilter<"ScreenTime"> | string | null
-    accountId?: StringNullableFilter<"ScreenTime"> | string | null
+    kValue?: StringFilter<"ScreenTime"> | string
+    accountId?: StringFilter<"ScreenTime"> | string
     updatedAt?: DateTimeFilter<"ScreenTime"> | Date | string
     createdAt?: DateTimeFilter<"ScreenTime"> | Date | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -5095,8 +6274,8 @@ export namespace Prisma {
   export type ScreenTimeOrderByWithAggregationInput = {
     id?: SortOrder
     ownerId?: SortOrder
-    kValue?: SortOrderInput | SortOrder
-    accountId?: SortOrderInput | SortOrder
+    kValue?: SortOrder
+    accountId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
     _count?: ScreenTimeCountOrderByAggregateInput
@@ -5110,8 +6289,8 @@ export namespace Prisma {
     NOT?: ScreenTimeScalarWhereWithAggregatesInput | ScreenTimeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ScreenTime"> | string
     ownerId?: StringWithAggregatesFilter<"ScreenTime"> | string
-    kValue?: StringNullableWithAggregatesFilter<"ScreenTime"> | string | null
-    accountId?: StringNullableWithAggregatesFilter<"ScreenTime"> | string | null
+    kValue?: StringWithAggregatesFilter<"ScreenTime"> | string
+    accountId?: StringWithAggregatesFilter<"ScreenTime"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"ScreenTime"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"ScreenTime"> | Date | string
   }
@@ -5259,6 +6438,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdAt?: Date | string
     account?: ScreenTimeCreateNestedOneWithoutOwnerInput
+    following?: FollowingItemCreateNestedManyWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5270,6 +6450,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     createdAt?: Date | string
     account?: ScreenTimeUncheckedCreateNestedOneWithoutOwnerInput
+    following?: FollowingItemUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UserUpdateInput = {
@@ -5281,6 +6462,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: ScreenTimeUpdateOneWithoutOwnerNestedInput
+    following?: FollowingItemUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5292,6 +6474,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: ScreenTimeUncheckedUpdateOneWithoutOwnerNestedInput
+    following?: FollowingItemUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5324,10 +6507,70 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FollowingItemCreateInput = {
+    id?: string
+    itemId: string
+    name: string
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    users?: UserCreateNestedManyWithoutFollowingInput
+  }
+
+  export type FollowingItemUncheckedCreateInput = {
+    id?: string
+    itemId: string
+    name: string
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type FollowingItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type FollowingItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type FollowingItemCreateManyInput = {
+    id?: string
+    itemId: string
+    name: string
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FollowingItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowingItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ScreenTimeCreateInput = {
     id?: string
-    kValue?: string | null
-    accountId?: string | null
+    kValue: string
+    accountId: string
     updatedAt?: Date | string
     createdAt?: Date | string
     owner: UserCreateNestedOneWithoutAccountInput
@@ -5336,16 +6579,16 @@ export namespace Prisma {
   export type ScreenTimeUncheckedCreateInput = {
     id?: string
     ownerId: string
-    kValue?: string | null
-    accountId?: string | null
+    kValue: string
+    accountId: string
     updatedAt?: Date | string
     createdAt?: Date | string
   }
 
   export type ScreenTimeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutAccountNestedInput
@@ -5354,8 +6597,8 @@ export namespace Prisma {
   export type ScreenTimeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5363,16 +6606,16 @@ export namespace Prisma {
   export type ScreenTimeCreateManyInput = {
     id?: string
     ownerId: string
-    kValue?: string | null
-    accountId?: string | null
+    kValue: string
+    accountId: string
     updatedAt?: Date | string
     createdAt?: Date | string
   }
 
   export type ScreenTimeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5380,8 +6623,8 @@ export namespace Prisma {
   export type ScreenTimeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     ownerId?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5587,6 +6830,16 @@ export namespace Prisma {
     isNot?: ScreenTimeWhereInput | null
   }
 
+  export type FollowingItemListRelationFilter = {
+    every?: FollowingItemWhereInput
+    some?: FollowingItemWhereInput
+    none?: FollowingItemWhereInput
+  }
+
+  export type FollowingItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -5681,29 +6934,43 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FollowingItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    name?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FollowingItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    name?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FollowingItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    name?: SortOrder
+    updatedAt?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type ScreenTimeCountOrderByAggregateInput = {
@@ -5731,24 +6998,6 @@ export namespace Prisma {
     accountId?: SortOrder
     updatedAt?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type MovieCountOrderByAggregateInput = {
@@ -5823,10 +7072,22 @@ export namespace Prisma {
     connect?: ScreenTimeWhereUniqueInput
   }
 
+  export type FollowingItemCreateNestedManyWithoutUsersInput = {
+    create?: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput> | FollowingItemCreateWithoutUsersInput[] | FollowingItemUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: FollowingItemCreateOrConnectWithoutUsersInput | FollowingItemCreateOrConnectWithoutUsersInput[]
+    connect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+  }
+
   export type ScreenTimeUncheckedCreateNestedOneWithoutOwnerInput = {
     create?: XOR<ScreenTimeCreateWithoutOwnerInput, ScreenTimeUncheckedCreateWithoutOwnerInput>
     connectOrCreate?: ScreenTimeCreateOrConnectWithoutOwnerInput
     connect?: ScreenTimeWhereUniqueInput
+  }
+
+  export type FollowingItemUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput> | FollowingItemCreateWithoutUsersInput[] | FollowingItemUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: FollowingItemCreateOrConnectWithoutUsersInput | FollowingItemCreateOrConnectWithoutUsersInput[]
+    connect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5859,6 +7120,19 @@ export namespace Prisma {
     update?: XOR<XOR<ScreenTimeUpdateToOneWithWhereWithoutOwnerInput, ScreenTimeUpdateWithoutOwnerInput>, ScreenTimeUncheckedUpdateWithoutOwnerInput>
   }
 
+  export type FollowingItemUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput> | FollowingItemCreateWithoutUsersInput[] | FollowingItemUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: FollowingItemCreateOrConnectWithoutUsersInput | FollowingItemCreateOrConnectWithoutUsersInput[]
+    upsert?: FollowingItemUpsertWithWhereUniqueWithoutUsersInput | FollowingItemUpsertWithWhereUniqueWithoutUsersInput[]
+    set?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    disconnect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    delete?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    connect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    update?: FollowingItemUpdateWithWhereUniqueWithoutUsersInput | FollowingItemUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: FollowingItemUpdateManyWithWhereWithoutUsersInput | FollowingItemUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: FollowingItemScalarWhereInput | FollowingItemScalarWhereInput[]
+  }
+
   export type ScreenTimeUncheckedUpdateOneWithoutOwnerNestedInput = {
     create?: XOR<ScreenTimeCreateWithoutOwnerInput, ScreenTimeUncheckedCreateWithoutOwnerInput>
     connectOrCreate?: ScreenTimeCreateOrConnectWithoutOwnerInput
@@ -5869,14 +7143,61 @@ export namespace Prisma {
     update?: XOR<XOR<ScreenTimeUpdateToOneWithWhereWithoutOwnerInput, ScreenTimeUpdateWithoutOwnerInput>, ScreenTimeUncheckedUpdateWithoutOwnerInput>
   }
 
+  export type FollowingItemUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput> | FollowingItemCreateWithoutUsersInput[] | FollowingItemUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: FollowingItemCreateOrConnectWithoutUsersInput | FollowingItemCreateOrConnectWithoutUsersInput[]
+    upsert?: FollowingItemUpsertWithWhereUniqueWithoutUsersInput | FollowingItemUpsertWithWhereUniqueWithoutUsersInput[]
+    set?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    disconnect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    delete?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    connect?: FollowingItemWhereUniqueInput | FollowingItemWhereUniqueInput[]
+    update?: FollowingItemUpdateWithWhereUniqueWithoutUsersInput | FollowingItemUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: FollowingItemUpdateManyWithWhereWithoutUsersInput | FollowingItemUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: FollowingItemScalarWhereInput | FollowingItemScalarWhereInput[]
+  }
+
+  export type UserCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput> | UserCreateWithoutFollowingInput[] | UserUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingInput | UserCreateOrConnectWithoutFollowingInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput> | UserCreateWithoutFollowingInput[] | UserUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingInput | UserCreateOrConnectWithoutFollowingInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput> | UserCreateWithoutFollowingInput[] | UserUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingInput | UserCreateOrConnectWithoutFollowingInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutFollowingInput | UserUpsertWithWhereUniqueWithoutFollowingInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutFollowingInput | UserUpdateWithWhereUniqueWithoutFollowingInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutFollowingInput | UserUpdateManyWithWhereWithoutFollowingInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput> | UserCreateWithoutFollowingInput[] | UserUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingInput | UserCreateOrConnectWithoutFollowingInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutFollowingInput | UserUpsertWithWhereUniqueWithoutFollowingInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutFollowingInput | UserUpdateWithWhereUniqueWithoutFollowingInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutFollowingInput | UserUpdateManyWithWhereWithoutFollowingInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountInput = {
     create?: XOR<UserCreateWithoutAccountInput, UserUncheckedCreateWithoutAccountInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type UserUpdateOneRequiredWithoutAccountNestedInput = {
@@ -5994,60 +7315,18 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type ScreenTimeCreateWithoutOwnerInput = {
     id?: string
-    kValue?: string | null
-    accountId?: string | null
+    kValue: string
+    accountId: string
     updatedAt?: Date | string
     createdAt?: Date | string
   }
 
   export type ScreenTimeUncheckedCreateWithoutOwnerInput = {
     id?: string
-    kValue?: string | null
-    accountId?: string | null
+    kValue: string
+    accountId: string
     updatedAt?: Date | string
     createdAt?: Date | string
   }
@@ -6055,6 +7334,27 @@ export namespace Prisma {
   export type ScreenTimeCreateOrConnectWithoutOwnerInput = {
     where: ScreenTimeWhereUniqueInput
     create: XOR<ScreenTimeCreateWithoutOwnerInput, ScreenTimeUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type FollowingItemCreateWithoutUsersInput = {
+    id?: string
+    itemId: string
+    name: string
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FollowingItemUncheckedCreateWithoutUsersInput = {
+    id?: string
+    itemId: string
+    name: string
+    updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type FollowingItemCreateOrConnectWithoutUsersInput = {
+    where: FollowingItemWhereUniqueInput
+    create: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput>
   }
 
   export type ScreenTimeUpsertWithoutOwnerInput = {
@@ -6070,18 +7370,101 @@ export namespace Prisma {
 
   export type ScreenTimeUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScreenTimeUncheckedUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kValue?: NullableStringFieldUpdateOperationsInput | string | null
-    accountId?: NullableStringFieldUpdateOperationsInput | string | null
+    kValue?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowingItemUpsertWithWhereUniqueWithoutUsersInput = {
+    where: FollowingItemWhereUniqueInput
+    update: XOR<FollowingItemUpdateWithoutUsersInput, FollowingItemUncheckedUpdateWithoutUsersInput>
+    create: XOR<FollowingItemCreateWithoutUsersInput, FollowingItemUncheckedCreateWithoutUsersInput>
+  }
+
+  export type FollowingItemUpdateWithWhereUniqueWithoutUsersInput = {
+    where: FollowingItemWhereUniqueInput
+    data: XOR<FollowingItemUpdateWithoutUsersInput, FollowingItemUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type FollowingItemUpdateManyWithWhereWithoutUsersInput = {
+    where: FollowingItemScalarWhereInput
+    data: XOR<FollowingItemUpdateManyMutationInput, FollowingItemUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type FollowingItemScalarWhereInput = {
+    AND?: FollowingItemScalarWhereInput | FollowingItemScalarWhereInput[]
+    OR?: FollowingItemScalarWhereInput[]
+    NOT?: FollowingItemScalarWhereInput | FollowingItemScalarWhereInput[]
+    id?: StringFilter<"FollowingItem"> | string
+    itemId?: StringFilter<"FollowingItem"> | string
+    name?: StringFilter<"FollowingItem"> | string
+    updatedAt?: DateTimeFilter<"FollowingItem"> | Date | string
+    createdAt?: DateTimeFilter<"FollowingItem"> | Date | string
+  }
+
+  export type UserCreateWithoutFollowingInput = {
+    id?: string
+    userId: number
+    name: string
+    custom?: boolean
+    seriesSub?: boolean
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    account?: ScreenTimeCreateNestedOneWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutFollowingInput = {
+    id?: string
+    userId: number
+    name: string
+    custom?: boolean
+    seriesSub?: boolean
+    updatedAt?: Date | string
+    createdAt?: Date | string
+    account?: ScreenTimeUncheckedCreateNestedOneWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutFollowingInput, UserUncheckedUpdateWithoutFollowingInput>
+    create: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutFollowingInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutFollowingInput, UserUncheckedUpdateWithoutFollowingInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutFollowingInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutFollowingInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    userId?: IntFilter<"User"> | number
+    name?: StringFilter<"User"> | string
+    custom?: BoolFilter<"User"> | boolean
+    seriesSub?: BoolFilter<"User"> | boolean
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type UserCreateWithoutAccountInput = {
@@ -6092,6 +7475,7 @@ export namespace Prisma {
     seriesSub?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
+    following?: FollowingItemCreateNestedManyWithoutUsersInput
   }
 
   export type UserUncheckedCreateWithoutAccountInput = {
@@ -6102,6 +7486,7 @@ export namespace Prisma {
     seriesSub?: boolean
     updatedAt?: Date | string
     createdAt?: Date | string
+    following?: FollowingItemUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UserCreateOrConnectWithoutAccountInput = {
@@ -6128,9 +7513,67 @@ export namespace Prisma {
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: FollowingItemUpdateManyWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    custom?: BoolFieldUpdateOperationsInput | boolean
+    seriesSub?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: FollowingItemUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type FollowingItemUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowingItemUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowingItemUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    custom?: BoolFieldUpdateOperationsInput | boolean
+    seriesSub?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: ScreenTimeUpdateOneWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    custom?: BoolFieldUpdateOperationsInput | boolean
+    seriesSub?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: ScreenTimeUncheckedUpdateOneWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutFollowingInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
@@ -6146,9 +7589,21 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use UserCountOutputTypeDefaultArgs instead
+     */
+    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FollowingItemCountOutputTypeDefaultArgs instead
+     */
+    export type FollowingItemCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FollowingItemCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FollowingItemDefaultArgs instead
+     */
+    export type FollowingItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FollowingItemDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ScreenTimeDefaultArgs instead
      */

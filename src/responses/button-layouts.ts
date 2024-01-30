@@ -8,4 +8,8 @@ export const homeLayout = new Keyboard([
 export const seriesLayout = new Keyboard([
   [{ text: "Custom List Of Shows" }, { text: "Hottest TV-Shows Daily" }],
   [{ text: "🚫 Cancel" }],
-]);
+])
+  .resized()
+  .oneTime();
+
+export const removeLayout = new Keyboard();
