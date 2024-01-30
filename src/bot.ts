@@ -7,6 +7,7 @@ import { helpCallBack } from "./commands/help";
 import { pingCallBack } from "./commands/ping";
 import { searchCallBack } from "./commands/search";
 import { startCallBack } from "./commands/start";
+import { usersCallBack } from "./commands/users";
 import { updateContext } from "./middlewares";
 import {
   moviesUpdateResponse,
@@ -26,6 +27,8 @@ bot.use(updateContext);
 bot.command("help", helpCallBack);
 
 bot.command("ping", pingCallBack);
+
+bot.command("users", usersCallBack);
 
 bot.command("start", startCallBack);
 
