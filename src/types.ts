@@ -14,3 +14,5 @@ export type BotUser = Prisma.UserGetPayload<{ include: { account: true } }>;
 export type Movies = Movie[];
 
 export type Shows = Show[];
+
+export type SearchResult = Omit<Show, "date" | "createdAt" | "updatedAt">;
