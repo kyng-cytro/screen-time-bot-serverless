@@ -1,6 +1,7 @@
 import { homeKeyboard } from "../responses/keyboards";
 import { searchResultButton } from "../responses/buttons";
 import { GrammyContext } from "../types";
+import { searchShows } from "../utils/scrapper-service";
 
 export const searchCallBack = async (ctx: GrammyContext) => {
   const query = ctx.match;
@@ -15,17 +16,7 @@ export const searchCallBack = async (ctx: GrammyContext) => {
     reply_parameters: { message_id: ctx.message?.message_id! },
   });
 
-  // TODO: get real data from scrape
-  const results = [
-    {
-      show_id: "",
-      image:
-        "https://earlystemer.com/wp-content/uploads/2021/07/earlystemer-logo-120x46.png",
-      name: "test",
-      summary: "test",
-      link: "wdw",
-    },
-  ];
+  const results = await searchShows({ show: query.toString() });
 
   if (!results.length)
     return await msg.editText(`No Shows found for the name *${query}*`, {
@@ -39,9 +30,9 @@ export const searchCallBack = async (ctx: GrammyContext) => {
 
   for (const item of results) {
     await ctx.replyWithPhoto(item.image, {
-      caption: `*${item.name}*\n\n${item.summary}\n\n[👀 Read More](${item.link})`,
+      caption: `*${item.title}*\n\n${item.summary}\n\n[👀 Read More](${item.link})`,
       parse_mode: "Markdown",
-      reply_markup: searchResultButton(item.show_id),
+      reply_markup: searchResultButton(item.id),
     });
   }
 };
