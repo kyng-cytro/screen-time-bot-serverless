@@ -10,23 +10,36 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(cuid())
-  userId    Int         @unique @map("user_id")
+  id        String          @id @default(cuid())
+  userId    Int             @unique @map("user_id")
   name      String
-  custom    Boolean     @default(false)
-  seriesSub Boolean     @default(false) @map("series_sub")
   account   ScreenTime?
-  updatedAt DateTime    @default(now()) @map("updated_at")
-  createdAt DateTime    @default(now()) @map("created_at")
+  following FollowingItem[]
+  custom    Boolean         @default(false)
+  seriesSub Boolean         @default(false) @map("series_sub")
+  updatedAt DateTime        @default(now()) @map("updated_at")
+  createdAt DateTime        @default(now()) @map("created_at")
 
+  @@index([userId])
   @@map("users")
+}
+
+model FollowingItem {
+  id        String   @id @default(cuid())
+  itemId    String   @unique
+  name      String
+  users     User[]
+  updatedAt DateTime @default(now()) @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([itemId])
 }
 
 model ScreenTime {
   id        String   @id @default(cuid())
   ownerId   String   @unique
-  kValue    String?  @map("k_value")
-  accountId String?  @map("account_id")
+  kValue    String   @map("k_value")
+  accountId String   @map("account_id")
   owner     User     @relation(fields: [ownerId], references: [id])
   updatedAt DateTime @default(now()) @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")

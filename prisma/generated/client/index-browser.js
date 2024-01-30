@@ -117,6 +117,14 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.FollowingItemScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  name: 'name',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.ScreenTimeScalarFieldEnum = {
   id: 'id',
   ownerId: 'ownerId',
@@ -158,14 +166,10 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   User: 'User',
+  FollowingItem: 'FollowingItem',
   ScreenTime: 'ScreenTime',
   Movie: 'Movie',
   Show: 'Show'
