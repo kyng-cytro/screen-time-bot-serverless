@@ -111,6 +111,7 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   name: 'name',
+  role: 'role',
   custom: 'custom',
   seriesSub: 'seriesSub',
   updatedAt: 'updatedAt',
@@ -165,7 +166,10 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.Role = exports.$Enums.Role = {
+  user: 'user',
+  admin: 'admin'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

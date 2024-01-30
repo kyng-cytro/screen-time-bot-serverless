@@ -40,6 +40,23 @@ export type Movie = $Result.DefaultSelection<Prisma.$MoviePayload>
 export type Show = $Result.DefaultSelection<Prisma.$ShowPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  user: 'user',
+  admin: 'admin'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
+
+/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -1275,6 +1292,7 @@ export namespace Prisma {
     id: string | null
     userId: number | null
     name: string | null
+    role: $Enums.Role | null
     custom: boolean | null
     seriesSub: boolean | null
     updatedAt: Date | null
@@ -1285,6 +1303,7 @@ export namespace Prisma {
     id: string | null
     userId: number | null
     name: string | null
+    role: $Enums.Role | null
     custom: boolean | null
     seriesSub: boolean | null
     updatedAt: Date | null
@@ -1295,6 +1314,7 @@ export namespace Prisma {
     id: number
     userId: number
     name: number
+    role: number
     custom: number
     seriesSub: number
     updatedAt: number
@@ -1315,6 +1335,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    role?: true
     custom?: true
     seriesSub?: true
     updatedAt?: true
@@ -1325,6 +1346,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    role?: true
     custom?: true
     seriesSub?: true
     updatedAt?: true
@@ -1335,6 +1357,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     name?: true
+    role?: true
     custom?: true
     seriesSub?: true
     updatedAt?: true
@@ -1432,6 +1455,7 @@ export namespace Prisma {
     id: string
     userId: number
     name: string
+    role: $Enums.Role
     custom: boolean
     seriesSub: boolean
     updatedAt: Date
@@ -1461,6 +1485,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    role?: boolean
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: boolean
@@ -1474,6 +1499,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     name?: boolean
+    role?: boolean
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: boolean
@@ -1497,6 +1523,7 @@ export namespace Prisma {
       id: string
       userId: number
       name: string
+      role: $Enums.Role
       custom: boolean
       seriesSub: boolean
       updatedAt: Date
@@ -1901,6 +1928,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly userId: FieldRef<"User", 'Int'>
     readonly name: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'Role'>
     readonly custom: FieldRef<"User", 'Boolean'>
     readonly seriesSub: FieldRef<"User", 'Boolean'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -5963,6 +5991,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     name: 'name',
+    role: 'role',
     custom: 'custom',
     seriesSub: 'seriesSub',
     updatedAt: 'updatedAt',
@@ -6073,6 +6102,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -6117,6 +6160,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     userId?: IntFilter<"User"> | number
     name?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     custom?: BoolFilter<"User"> | boolean
     seriesSub?: BoolFilter<"User"> | boolean
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -6129,6 +6173,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    role?: SortOrder
     custom?: SortOrder
     seriesSub?: SortOrder
     updatedAt?: SortOrder
@@ -6144,6 +6189,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     custom?: BoolFilter<"User"> | boolean
     seriesSub?: BoolFilter<"User"> | boolean
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -6156,6 +6202,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    role?: SortOrder
     custom?: SortOrder
     seriesSub?: SortOrder
     updatedAt?: SortOrder
@@ -6174,6 +6221,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     userId?: IntWithAggregatesFilter<"User"> | number
     name?: StringWithAggregatesFilter<"User"> | string
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     custom?: BoolWithAggregatesFilter<"User"> | boolean
     seriesSub?: BoolWithAggregatesFilter<"User"> | boolean
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -6433,6 +6481,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -6445,6 +6494,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -6457,6 +6507,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6469,6 +6520,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6481,6 +6533,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -6491,6 +6544,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6501,6 +6555,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6809,6 +6864,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -6844,6 +6906,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    role?: SortOrder
     custom?: SortOrder
     seriesSub?: SortOrder
     updatedAt?: SortOrder
@@ -6858,6 +6921,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    role?: SortOrder
     custom?: SortOrder
     seriesSub?: SortOrder
     updatedAt?: SortOrder
@@ -6868,6 +6932,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     name?: SortOrder
+    role?: SortOrder
     custom?: SortOrder
     seriesSub?: SortOrder
     updatedAt?: SortOrder
@@ -6910,6 +6975,16 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -7102,6 +7177,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -7233,6 +7312,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -7291,6 +7377,16 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -7415,6 +7511,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -7426,6 +7523,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -7461,6 +7559,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     userId?: IntFilter<"User"> | number
     name?: StringFilter<"User"> | string
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     custom?: BoolFilter<"User"> | boolean
     seriesSub?: BoolFilter<"User"> | boolean
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -7471,6 +7570,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -7482,6 +7582,7 @@ export namespace Prisma {
     id?: string
     userId: number
     name: string
+    role?: $Enums.Role
     custom?: boolean
     seriesSub?: boolean
     updatedAt?: Date | string
@@ -7509,6 +7610,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7520,6 +7622,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7555,6 +7658,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7566,6 +7670,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7577,6 +7682,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     custom?: BoolFieldUpdateOperationsInput | boolean
     seriesSub?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
