@@ -1,6 +1,6 @@
 import { homeLayout } from "../responses/button-layouts";
 import { GrammyContext } from "../types";
-import { addUser, getUser } from "../utils/database";
+import { addUser } from "../utils/database";
 import { randomGreeting } from "../utils/helpers";
 
 export const startCallBack = async (ctx: GrammyContext) => {
