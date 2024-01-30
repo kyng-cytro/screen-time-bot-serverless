@@ -14,6 +14,14 @@ export const getUser = async ({ userId }: { userId: number }) => {
   }
 };
 
+export const getUsers = async () => {
+  try {
+    return await prisma.user.findMany({});
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const getUsersWithSeriesSub = async () => {
   try {
     return await prisma.user.findMany({
