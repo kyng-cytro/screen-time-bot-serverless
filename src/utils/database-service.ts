@@ -17,7 +17,7 @@ export const getUser = async ({ userId }: { userId: number }) => {
 
 export const getUsers = async () => {
   try {
-    return await prisma.user.findMany({});
+    return await prisma.user.findMany({ cacheStrategy: { ttl: 60 } });
   } catch (err) {
     console.error(err);
   }
@@ -27,6 +27,7 @@ export const getUsersWithSeriesSub = async () => {
   try {
     return await prisma.user.findMany({
       where: { seriesSub: true },
+      cacheStrategy: { ttl: 60 },
     });
   } catch (err) {
     console.error(err);
@@ -35,7 +36,7 @@ export const getUsersWithSeriesSub = async () => {
 
 export const getMovies = async () => {
   try {
-    return await prisma.movie.findMany({});
+    return await prisma.movie.findMany({ cacheStrategy: { ttl: 60 } });
   } catch (err) {
     console.log(err);
   }
@@ -43,7 +44,7 @@ export const getMovies = async () => {
 
 export const getShows = async () => {
   try {
-    return await prisma.show.findMany({});
+    return await prisma.show.findMany({ cacheStrategy: { ttl: 60 } });
   } catch (err) {
     console.log(err);
   }
@@ -138,6 +139,7 @@ export const getUserFollowings = async ({ id }: { id: string }) => {
   try {
     return await prisma.followingItem.findMany({
       where: { users: { some: { id } } },
+      cacheStrategy: { ttl: 60 },
     });
   } catch (err) {
     console.error(err);
@@ -180,6 +182,7 @@ export const checkIfUserIsFollowing = async ({
   try {
     await prisma.followingItem.findFirstOrThrow({
       where: { id: showId, users: { some: { id } } },
+      cacheStrategy: { ttl: 60 },
     });
     return true;
   } catch (err) {
