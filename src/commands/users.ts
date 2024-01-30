@@ -1,5 +1,5 @@
 import { GrammyContext } from "../types";
-import { getUsers } from "../utils/database";
+import { getUsers } from "../utils/database-service";
 
 export const usersCallBack = async (ctx: GrammyContext) => {
   if (ctx.user?.role !== "admin") return await ctx.reply("😂 Lol you wish.");

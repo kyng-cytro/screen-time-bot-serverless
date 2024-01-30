@@ -1,10 +1,10 @@
 import { GrammyContext } from "../types";
-import { subscribeUser } from "../utils/database";
+import { subscribeUser } from "../utils/database-service";
 import { randomGreeting } from "../utils/helpers";
 import {
   createScreenTimeAccount,
   getScreenTimeAccountInfo,
-} from "../utils/screen-time";
+} from "../utils/screen-time-service";
 import { homeKeyboard, seriesKeyboard } from "./keyboards";
 import { customSeriesButtons, moviesButtons, seriesButtons } from "./buttons";
 

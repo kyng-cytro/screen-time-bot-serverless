@@ -1,7 +1,8 @@
-import { PrismaClient } from "../../prisma/generated/client/";
 import { Movies, Shows } from "../types";
+import { PrismaClient } from "@prisma/client";
+import { withAccelerate } from "@prisma/extension-accelerate";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient().$extends(withAccelerate());
 
 export const getUser = async ({ userId }: { userId: number }) => {
   try {

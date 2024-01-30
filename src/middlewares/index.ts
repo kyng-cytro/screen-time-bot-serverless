@@ -1,5 +1,5 @@
 import { GrammyContext } from "../types";
-import { getUser } from "../utils/database";
+import { getUser } from "../utils/database-service";
 
 export const updateContext = async (ctx: GrammyContext, next: any) => {
   ctx.first_name = ctx.from?.first_name;

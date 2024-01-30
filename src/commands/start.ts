@@ -1,6 +1,6 @@
 import { homeKeyboard } from "../responses/keyboards";
 import { GrammyContext } from "../types";
-import { addUser } from "../utils/database";
+import { addUser } from "../utils/database-service";
 import { randomGreeting } from "../utils/helpers";
 
 export const startCallBack = async (ctx: GrammyContext) => {

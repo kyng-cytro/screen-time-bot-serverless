@@ -46,6 +46,8 @@ bot.hears("🚫 Cancel", cancelResponse);
 
 bot.hears("ℹ️  Help", helpCallBack);
 
+// TODO: implement inline buttons
+
 bot.on("msg:text", async (ctx) => {
   const message = ctx.msg.text;
 
