@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@grammyjs/hydrate": "^1.4.1",
-    "@prisma/client": "5.8.1",
+    "@prisma/client": "5.9.0",
+    "@prisma/extension-accelerate": "^0.6.2",
     "@vercel/node": "^3.0.17",
     "cookiejar": "^2.1.4",
     "dotenv": "^16.4.1",
@@ -19,6 +20,6 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "prisma": "5.8.1"
+    "prisma": "5.9.0"
   }
 }
