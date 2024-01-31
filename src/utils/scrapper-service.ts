@@ -6,23 +6,12 @@ export const searchShows = async ({ show }: { show: string }) => {
     let results: SearchResult[] = [];
     const url = new URL("https://next-episode.net/search/");
     url.searchParams.append("name", show);
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      console.error("Error looking up that show");
-      return results;
-    }
-
+    const res = await fetch(url, { redirect: "manual" });
     const pageText = await res.text();
-
     const $ = load(pageText);
-
     const items = $("div.item").toArray();
-
     if (!items.length) return results;
-
     const limitedItems = items.slice(0, 3);
-
     for (let item of limitedItems) {
       const header = $(item).find("span.headlinehref");
       if (!header.length) continue;
