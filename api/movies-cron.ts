@@ -6,14 +6,14 @@ import {
 import { bot } from "../src/bot";
 import { GROUP_ID } from "../src/constants";
 import { addMovies } from "../src/utils/database-service";
-import { getMovies } from "../src/utils/scrapper-service";
+import { scrapeMovies } from "../src/utils/scrapper-service";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export default async function handler(
   _request: VercelRequest,
   response: VercelResponse,
 ) {
-  const movies = await getMovies();
+  const movies = await scrapeMovies();
   if (!movies.length)
     return response
       .status(200)
