@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { extend } from "dayjs";
 import { Movies, Shows } from "../types";
 import { GREETINGS } from "../constants";
 import { InputMediaBuilder } from "grammy";
@@ -60,11 +60,11 @@ export const movieUrlTransform = ({ url }: { url: string }) => {
   return urlWithoutResizeAndId;
 };
 
-export const chunkalize = ({
+export const chunkalize = <T>({
   data,
   chunkSize = 4,
 }: {
-  data: Movies | Shows;
+  data: T[];
   chunkSize?: number;
 }) => {
   const chunks = Array.from(
