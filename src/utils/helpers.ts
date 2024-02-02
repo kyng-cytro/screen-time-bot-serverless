@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { CreateMovie, CreateShow, Movies, Shows } from "../types";
+import { Movies, Shows } from "../types";
 import { GREETINGS } from "../constants";
 import { InputMediaBuilder } from "grammy";
 
