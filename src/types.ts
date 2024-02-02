@@ -1,6 +1,6 @@
 import type { Context } from "grammy";
 import { HydrateFlavor } from "@grammyjs/hydrate";
-import type { Movie, Prisma, Show } from "@prisma/client";
+import type { Prisma, Show } from "@prisma/client";
 
 export interface GrammyContext extends HydrateFlavor<Context> {
   first_name?: string;
@@ -9,10 +9,9 @@ export interface GrammyContext extends HydrateFlavor<Context> {
   user?: BotUser;
 }
 
-export type BotUser = Prisma.UserGetPayload<{ include: { account: true } }>;
-
-export type Movies = Movie[];
-
-export type Shows = Show[];
-
+export type Movies = CreateMovie[];
+export type Shows = CreateShow[];
+export type CreateMovie = Prisma.MovieCreateInput;
+export type CreateShow = Prisma.ShowCreateInput;
 export type SearchResult = Omit<Show, "date" | "createdAt" | "updatedAt">;
+export type BotUser = Prisma.UserGetPayload<{ include: { account: true } }>;

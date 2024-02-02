@@ -1,3 +1,5 @@
+import { generatePHPSESSID } from "./helpers";
+
 export const createScreenTimeAccount = async ({
   userId,
 }: {
@@ -35,12 +37,12 @@ export const getScreenTimeAccountInfo = async ({
       username: `screen_${userId}`,
       password: `screen_${userId}`,
     };
-
+    const phpsessid = generatePHPSESSID({});
     const loginResponse = await fetch("https://next-episode.net/userlogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Cookie: "PHPSESSID=ffa218c4b34cac302da2cb93b71b0021;",
+        Cookie: `PHPSESSID=${phpsessid};`,
       },
       body: new URLSearchParams(login_info),
     });
