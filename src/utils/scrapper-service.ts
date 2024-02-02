@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { SearchResult, CreateShow, CreateMovie } from "../types";
+import { Movies, SearchResult, Shows } from "../types";
 import {
   formatDate,
   generatePHPSESSID,
@@ -49,7 +49,7 @@ export const searchShows = async ({ show }: { show: string }) => {
 
 export const getShows = async ({ userId }: { userId?: string }) => {
   try {
-    let shows: CreateShow[] = [];
+    let shows: Shows = [];
     const login_info = {
       username: `screen_${userId}`,
       password: `screen_${userId}`,
@@ -111,7 +111,7 @@ export const getShows = async ({ userId }: { userId?: string }) => {
 
 export const getMovies = async () => {
   try {
-    const movies: CreateMovie[] = [];
+    const movies: Movies = [];
     const url = new URL(
       "https://www.metacritic.com/browse/movies/release-date/theaters/date?view=detailed&ttype=1",
     );

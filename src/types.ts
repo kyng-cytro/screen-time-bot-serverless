@@ -9,8 +9,8 @@ export interface GrammyContext extends HydrateFlavor<Context> {
   user?: BotUser;
 }
 
-export type Movies = CreateMovie[];
 export type Shows = CreateShow[];
+export type Movies = CreateMovie[];
 export type CreateMovie = Prisma.MovieCreateInput;
 export type CreateShow = Prisma.ShowCreateInput;
 export type SearchResult = Omit<Show, "date" | "createdAt" | "updatedAt">;
