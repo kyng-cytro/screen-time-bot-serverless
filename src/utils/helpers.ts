@@ -61,7 +61,7 @@ export const movieUrlTransform = ({ url }: { url: string }) => {
 };
 
 export const chunkalize = ({ data }: { data: Movies | Shows }) => {
-  const chunkSize = data.length <= 4 ? 2 : data.length <= 9 ? 3 : 4;
+  const chunkSize = 4;
   const chunks = Array.from(
     { length: Math.ceil(data.length / chunkSize) },
     (_, i) => data.slice(i * chunkSize, i * chunkSize + chunkSize),
@@ -73,7 +73,7 @@ export const createCaption = ({ chunk }: { chunk: Shows | Movies }) => {
   return chunk.reduce((caption, show) => {
     return (
       caption +
-      `\n\n*${show.title}*\n_${show.date}_\n[👀 Read More](${show.link})`
+      `\n\n*${show.title}*\n${show.summary}\n_${show.date}_\n[👀 Read More](${show.link})`
     );
   }, "");
 };

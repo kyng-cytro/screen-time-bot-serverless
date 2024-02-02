@@ -11,12 +11,11 @@ import { usersCallBack } from "./commands/users";
 import { updateContext } from "./middlewares";
 import {
   moviesUpdateResponse,
-  cancelResponse,
-  greetingResponse,
   tvShowsUpdateResponse,
   hottestTvShowsDailyResponse,
   customListOfShowsResponse,
-} from "./responses";
+} from "./responses/keyboards";
+import { cancelResponse, greetingResponse } from "./responses";
 
 export const bot = new Bot<GrammyContext>(BOT_TOKEN);
 

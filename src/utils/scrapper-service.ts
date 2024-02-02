@@ -47,7 +47,7 @@ export const searchShows = async ({ show }: { show: string }) => {
   }
 };
 
-export const getShows = async ({ userId }: { userId?: string }) => {
+export const scrapeShows = async ({ userId }: { userId?: number }) => {
   try {
     let shows: Shows = [];
     const login_info = {
@@ -55,7 +55,7 @@ export const getShows = async ({ userId }: { userId?: string }) => {
       password: `screen_${userId}`,
     };
     const phpsessid = generatePHPSESSID({});
-    const pageResponse = await fetch("https://next-episode.net/calendar/", {
+    let pageResponse = await fetch("https://next-episode.net/calendar/", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -63,6 +63,13 @@ export const getShows = async ({ userId }: { userId?: string }) => {
       },
       body: new URLSearchParams(login_info),
     });
+
+    if (userId) {
+      pageResponse = await fetch("https://next-episode.net/calendar/", {
+        headers: { Cookie: `PHPSESSID=${phpsessid};` },
+      });
+    }
+
     if (!pageResponse.ok) {
       console.error("Error grabbing shows");
       return shows;
@@ -109,7 +116,7 @@ export const getShows = async ({ userId }: { userId?: string }) => {
   }
 };
 
-export const getMovies = async () => {
+export const scrapeMovies = async () => {
   try {
     const movies: Movies = [];
     const url = new URL(
@@ -142,7 +149,7 @@ export const getMovies = async () => {
         image: movieImage,
         title: movieTitle,
         date: formatDate({ date: movieDate }),
-        summary: trimSummary({ summary: movieSummary }),
+        summary: trimSummary({ summary: movieSummary, chars: 150 }),
       };
       movies.push(data);
     }
