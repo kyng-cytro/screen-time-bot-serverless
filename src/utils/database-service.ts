@@ -38,7 +38,7 @@ export const getMovies = async () => {
   try {
     return await prisma.movie.findMany({ cacheStrategy: { ttl: 60 } });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -46,7 +46,7 @@ export const getShows = async () => {
   try {
     return await prisma.show.findMany({ cacheStrategy: { ttl: 60 } });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -73,7 +73,7 @@ export const addMovies = async ({ movies }: { movies: Movies }) => {
       prisma.movie.createMany({ data: movies, skipDuplicates: true }),
     ]);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -84,7 +84,7 @@ export const addShows = async ({ shows }: { shows: Shows }) => {
       prisma.show.createMany({ data: shows, skipDuplicates: true }),
     ]);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -168,7 +168,7 @@ export const addToFollowings = async ({
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -186,7 +186,6 @@ export const checkIfUserIsFollowing = async ({
     });
     return true;
   } catch (err) {
-    console.log(err);
     return false;
   }
 };
