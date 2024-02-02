@@ -10,9 +10,13 @@ import { scrapeMovies } from "../src/utils/scrapper-service";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export default async function handler(
-  _request: VercelRequest,
+  request: VercelRequest,
   response: VercelResponse,
 ) {
+  if (request.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
+    return response.status(401).end("Unauthorized");
+  }
+
   const movies = await scrapeMovies();
   if (!movies.length)
     return response

@@ -1,4 +1,14 @@
 {
+  "crons": [
+    {
+      "path": "/api/movies-cron",
+      "schedule": "0 9 * * 6"
+    },
+    {
+      "path": "/api/shows-cron",
+      "schedule": "20 9 * * *"
+    }
+  ],
   "outputDirectory": ".",
   "installCommand": "npm i --omit=dev",
   "buildCommand": "npx ts-node scripts/build.ts"

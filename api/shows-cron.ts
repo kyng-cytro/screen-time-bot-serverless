@@ -10,9 +10,13 @@ import { addShows, getUsersWithSeriesSub } from "../src/utils/database-service";
 import { scrapeShows } from "../src/utils/scrapper-service";
 
 export default async function handler(
-  _request: VercelRequest,
+  request: VercelRequest,
   response: VercelResponse,
 ) {
+  if (request.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
+    return response.status(401).end("Unauthorized");
+  }
+
   const users = await getUsersWithSeriesSub();
   if (!users)
     return response
