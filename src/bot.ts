@@ -16,6 +16,16 @@ import {
   customListOfShowsResponse,
 } from "./responses/keyboards";
 import { cancelResponse, greetingResponse } from "./responses";
+import {
+  addFavouriteCallBack,
+  cancelSubCallBack,
+  doneWithDetailsCallback,
+  noCancelSubCallBack,
+  showCancelCallBack,
+  showLastCallBack,
+  showSubDetailsCallBack,
+  showTodayCallBack,
+} from "./responses/buttons";
 
 export const bot = new Bot<GrammyContext>(BOT_TOKEN);
 
@@ -23,6 +33,7 @@ bot.use(hydrate());
 
 bot.use(updateContext);
 
+// Slash Commands
 bot.command("help", helpCallBack);
 
 bot.command("ping", pingCallBack);
@@ -33,6 +44,28 @@ bot.command("start", startCallBack);
 
 bot.command("search", searchCallBack);
 
+// Inline Button Handlers
+bot.callbackQuery("show_last", showLastCallBack);
+
+bot.callbackQuery("cancel_sub", cancelSubCallBack);
+
+bot.callbackQuery("show_today", showTodayCallBack);
+
+bot.callbackQuery("show_cancel", showCancelCallBack);
+
+bot.callbackQuery(/add_(\d*)/, addFavouriteCallBack);
+
+bot.callbackQuery("no_cancel_sub", noCancelSubCallBack);
+
+bot.callbackQuery("show_sub_details", showSubDetailsCallBack);
+
+bot.callbackQuery("done_with_details", doneWithDetailsCallback);
+
+bot.on("callback_query:data", async (ctx) => {
+  ctx.callbackQuery.answer();
+});
+
+// Message Handlers
 bot.hears("📽 Movies Updates", moviesUpdateResponse);
 
 bot.hears("🎬 TV-Shows Updates", tvShowsUpdateResponse);
@@ -44,8 +77,6 @@ bot.hears("Custom List Of Shows", customListOfShowsResponse);
 bot.hears("🚫 Cancel", cancelResponse);
 
 bot.hears("ℹ️  Help", helpCallBack);
-
-// TODO: implement inline buttons
 
 bot.on("msg:text", async (ctx) => {
   const message = ctx.msg.text;
