@@ -60,8 +60,13 @@ export const movieUrlTransform = ({ url }: { url: string }) => {
   return urlWithoutResizeAndId;
 };
 
-export const chunkalize = ({ data }: { data: Movies | Shows }) => {
-  const chunkSize = 4;
+export const chunkalize = ({
+  data,
+  chunkSize = 4,
+}: {
+  data: Movies | Shows;
+  chunkSize?: number;
+}) => {
   const chunks = Array.from(
     { length: Math.ceil(data.length / chunkSize) },
     (_, i) => data.slice(i * chunkSize, i * chunkSize + chunkSize),
