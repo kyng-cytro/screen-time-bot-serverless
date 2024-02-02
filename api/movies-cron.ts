@@ -20,12 +20,12 @@ export default async function handler(
       .json({ error: false, message: "No movies data to act upon." });
   await addMovies({ movies });
   const chunks = chunkalize({ data: movies });
-  const mediaGroupPromises = chunks.map((chunk) => {
+  // NOTE: can't use paralle cause of ratelimit
+  for (const chunk of chunks) {
     const caption = createCaption({ chunk });
     const media = createMediaGroup({ chunk: chunk, caption: caption });
-    return bot.api.sendMediaGroup(GROUP_ID, media);
-  });
-  await Promise.all(mediaGroupPromises);
+    await bot.api.sendMediaGroup(GROUP_ID, media);
+  }
   return response
     .status(200)
     .json({ error: false, message: "SUCCESS: movies sent." });

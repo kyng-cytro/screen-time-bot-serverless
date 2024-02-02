@@ -36,12 +36,12 @@ export default async function handler(
       },
     );
     const chunks = chunkalize({ data: results });
-    const mediaGroupPromises = chunks.map((chunk) => {
+    // NOTE: can't use paralle cause of ratelimit
+    for (const chunk of chunks) {
       const caption = createCaption({ chunk });
       const media = createMediaGroup({ chunk: chunk, caption: caption });
-      return bot.api.sendMediaGroup(user.userId, media);
-    });
-    await Promise.all(mediaGroupPromises);
+      await bot.api.sendMediaGroup(user.userId, media);
+    }
   }
   return response
     .status(200)
