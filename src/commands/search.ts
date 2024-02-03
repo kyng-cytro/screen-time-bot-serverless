@@ -29,6 +29,7 @@ export const searchCallBack = async (ctx: GrammyContext) => {
   );
 
   for (const item of results) {
+    if (!item.id) continue;
     await ctx.replyWithPhoto(item.image, {
       caption: `*${item.title}*\n\n${item.summary}\n\n[👀 Read More](${item.link})`,
       parse_mode: "Markdown",
