@@ -1,5 +1,5 @@
 import { InlineKeyboard } from "grammy";
-import { GrammyContext, Shows } from "../types";
+import { Followings, GrammyContext, Shows } from "../types";
 import {
   addToFollowings,
   checkIfUserIsFollowing,
@@ -12,7 +12,6 @@ import {
 import { scrapeShows } from "../utils/scrapper-service";
 import { toggleScreenTimeWatchList } from "../utils/screen-time-service";
 import { chunkalize, createCaption, createMediaGroup } from "../utils/helpers";
-import { FollowingItem } from "@prisma/client";
 
 export const seriesButtons = new InlineKeyboard()
   .add({
@@ -43,7 +42,7 @@ export const searchResultButton = (id: string) => {
   });
 };
 
-const subDetailsButtons = ({ chunks }: { chunks: FollowingItem[][] }) => {
+const subDetailsButtons = ({ chunks }: { chunks: Followings[] }) => {
   const button = new InlineKeyboard();
   chunks.forEach((chunk, rowIndex) => {
     chunk.forEach((item, cellIndex) => {
@@ -52,6 +51,7 @@ const subDetailsButtons = ({ chunks }: { chunks: FollowingItem[][] }) => {
         callback_data: `remove_${item.itemId}`,
       });
     });
+    button.row();
   });
   button.row().add({ text: "✅ Done", callback_data: "done_with_details" });
   return button;

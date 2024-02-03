@@ -6,6 +6,7 @@ import { Keyboard } from "grammy";
 import { GrammyContext } from "../types";
 import { subscribeUser } from "../utils/database-service";
 import { customSeriesButtons, moviesButtons, seriesButtons } from "./buttons";
+import { scrapeFollowings } from "../utils/scrapper-service";
 
 export const homeKeyboard = new Keyboard()
   .text("📽 Movies Updates")
@@ -70,12 +71,15 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
       "You don't seem to be logged in try running /start.",
     );
 
+  const followings = await scrapeFollowings({ userId: ctx.user.userId });
+
   if (ctx.user.account) {
     await subscribeUser({
       type: "custom",
       id: ctx.user.id,
       accountId: ctx.user.account.accountId,
       kValue: ctx.user.account.kValue,
+      followings,
     });
     return await ctx.reply(
       "🤔 Seems like you've once had a Custom List Of Shows subscription. We will be using that.\n\nRemember you can use /search <name of tv-show> to search shows to follow",
@@ -93,6 +97,7 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
       type: "custom",
       accountId: account_id,
       kValue: k_value,
+      followings,
     });
 
     return await ctx.reply(
@@ -119,6 +124,7 @@ export const customListOfShowsResponse = async (ctx: GrammyContext) => {
     type: "custom",
     accountId: new_account_id,
     kValue: new_k_value,
+    followings,
   });
 
   return await ctx.reply(

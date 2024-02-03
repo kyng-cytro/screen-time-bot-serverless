@@ -1,4 +1,4 @@
-import { Movies, Shows } from "../types";
+import { Followings, Movies, Shows } from "../types";
 import { PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 
@@ -90,7 +90,13 @@ export const addShows = async ({ shows }: { shows: Shows }) => {
 export const subscribeUser = async (
   props:
     | { type: "reg"; id: string }
-    | { id: string; type: "custom"; accountId: string; kValue: string },
+    | {
+        id: string;
+        type: "custom";
+        accountId: string;
+        kValue: string;
+        followings: Followings;
+      },
 ) => {
   try {
     if (props.type === "reg") {
@@ -102,22 +108,36 @@ export const subscribeUser = async (
       });
     }
 
-    return await prisma.user.update({
-      where: { id: props.id },
-      data: {
-        seriesSub: true,
-        custom: true,
-        account: {
-          upsert: {
-            create: {
-              accountId: props.accountId,
-              kValue: props.kValue,
+    return await prisma.$transaction([
+      prisma.followingItem.createMany({
+        data: props.followings.map((following) => {
+          return { itemId: following.itemId, name: following.name };
+        }),
+        skipDuplicates: true,
+      }),
+
+      prisma.user.update({
+        where: { id: props.id },
+        data: {
+          seriesSub: true,
+          custom: true,
+          account: {
+            upsert: {
+              create: {
+                accountId: props.accountId,
+                kValue: props.kValue,
+              },
+              update: {},
             },
-            update: {},
+          },
+          following: {
+            set: props.followings.map((following) => {
+              return { itemId: following.itemId, name: following.name };
+            }),
           },
         },
-      },
-    });
+      }),
+    ]);
   } catch (err) {
     console.error(err);
   }
@@ -182,7 +202,7 @@ export const removeFromFollowings = async ({
       where: { id },
       data: {
         following: {
-          delete: { itemId: showId },
+          disconnect: { itemId: showId },
         },
       },
     });
