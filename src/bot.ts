@@ -21,6 +21,7 @@ import {
   cancelSubCallBack,
   doneWithDetailsCallback,
   noCancelSubCallBack,
+  removeFavouriteCallBack,
   showCancelCallBack,
   showLastCallBack,
   showSubDetailsCallBack,
@@ -54,6 +55,8 @@ bot.callbackQuery("show_today", showTodayCallBack);
 bot.callbackQuery("show_cancel", showCancelCallBack);
 
 bot.callbackQuery(/add_(\d*)/, addFavouriteCallBack);
+
+bot.callbackQuery(/remove_(\d*)/, removeFavouriteCallBack);
 
 bot.callbackQuery("no_cancel_sub", noCancelSubCallBack);
 

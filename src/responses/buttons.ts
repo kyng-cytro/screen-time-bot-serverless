@@ -6,6 +6,7 @@ import {
   getMovies,
   getShows,
   getUserFollowings,
+  removeFromFollowings,
   unSubscribeUser,
 } from "../utils/database-service";
 import { scrapeShows } from "../utils/scrapper-service";
@@ -264,4 +265,51 @@ export const addFavouriteCallBack = async (ctx: GrammyContext) => {
   });
   await addToFollowings({ id: ctx.user.id, showId, showName });
   return await answerCallBack({ ctx, message: "Successful" });
+};
+
+export const removeFavouriteCallBack = async (ctx: GrammyContext) => {
+  if (!ctx.user)
+    return await answerCallBack({
+      ctx,
+      error: true,
+      message: "Not loggedin. try /start",
+    });
+  if (!ctx.user.custom)
+    return await answerCallBack({
+      ctx,
+      error: true,
+      message: "You need an active custom list subscription",
+    });
+
+  const showId = ctx.callbackQuery?.data?.split("_")[1];
+  if (!showId) return await answerCallBack({ ctx, error: true });
+  if (await checkIfUserIsFollowing({ id: ctx.user.id, showId })) {
+    if (!ctx.user.account)
+      return await answerCallBack({
+        ctx,
+        error: true,
+        message: "Try resubscribing to custom list",
+      });
+    await toggleScreenTimeWatchList({
+      showId,
+      accountId: ctx.user.account.accountId,
+      kValue: ctx.user.account.kValue,
+    });
+    await removeFromFollowings({ id: ctx.user.id, showId });
+  }
+  const shows = await getUserFollowings({ id: ctx.user.id });
+  if (!shows || !shows.length)
+    return ctx.editMessageText(
+      `*Subscription Details*\nSubscription Type: Custom List Of TV-Shows\nNumber Of Shows: None`,
+      { parse_mode: "Markdown" },
+    );
+  const chunks = chunkalize({ data: shows, chunkSize: 3 });
+  return await ctx.editMessageText(
+    `*Subscription Details*\nSubscription Type: Custom List Of TV-Shows\nNumber Of Shows: ${
+      shows.length
+    }\n\n*Names Of Shows*\n${shows
+      .map((show, num) => `${num + 1}. ${show.name}`)
+      .join("\n")}`,
+    { parse_mode: "Markdown", reply_markup: subDetailsButtons({ chunks }) },
+  );
 };
