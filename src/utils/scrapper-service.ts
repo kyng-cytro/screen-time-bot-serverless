@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { Movies, SearchResult, Shows } from "../types";
+import { Followings, Movies, SearchResult, Shows } from "../types";
 import {
   formatDate,
   generatePHPSESSID,
@@ -47,6 +47,52 @@ export const searchShows = async ({ show }: { show: string }) => {
   }
 };
 
+export const scrapeFollowings = async ({ userId }: { userId: number }) => {
+  try {
+    let followings: Followings = [];
+    const login_info = {
+      username: `screen_${userId}`,
+      password: `screen_${userId}`,
+    };
+    const phpsessid = generatePHPSESSID({});
+    let pageResponse = await fetch(`https://next-episode.net/userlogin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: `PHPSESSID=${phpsessid};`,
+      },
+      body: new URLSearchParams(login_info),
+    });
+    pageResponse = await fetch(
+      `https://next-episode.net/user/${login_info.username}/`,
+      {
+        headers: { Cookie: `PHPSESSID=${phpsessid};` },
+      },
+    );
+    if (!pageResponse.ok) {
+      console.error("Error grabbing shows");
+      return followings;
+    }
+    const $ = load(await pageResponse.text());
+    const items = $("div.item").toArray();
+    if (!items.length) return followings;
+    for (let item of items) {
+      const header = $(item).find("span.headlinehref");
+      if (!header.length) continue;
+      const showId = header.find("a").attr("id")?.split("_")[1] || "";
+      const showName = header.find("a").text();
+      const data = {
+        itemId: showId,
+        name: showName,
+      };
+      followings.push(data);
+    }
+    return followings;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
 export const scrapeShows = async ({ userId }: { userId?: number }) => {
   try {
     let shows: Shows = [];
