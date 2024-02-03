@@ -27,7 +27,6 @@ export const getUsersWithSeriesSub = async () => {
   try {
     return await prisma.user.findMany({
       where: { seriesSub: true },
-      cacheStrategy: { ttl: 60 },
     });
   } catch (err) {
     console.error(err);
@@ -139,7 +138,6 @@ export const getUserFollowings = async ({ id }: { id: string }) => {
   try {
     return await prisma.followingItem.findMany({
       where: { users: { some: { id } } },
-      cacheStrategy: { ttl: 60 },
     });
   } catch (err) {
     console.error(err);
@@ -172,6 +170,27 @@ export const addToFollowings = async ({
   }
 };
 
+export const removeFromFollowings = async ({
+  id,
+  showId,
+}: {
+  id: string;
+  showId: string;
+}) => {
+  try {
+    return await prisma.user.update({
+      where: { id },
+      data: {
+        following: {
+          delete: { itemId: showId },
+        },
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const checkIfUserIsFollowing = async ({
   id,
   showId,
@@ -181,8 +200,7 @@ export const checkIfUserIsFollowing = async ({
 }) => {
   try {
     await prisma.followingItem.findFirstOrThrow({
-      where: { id: showId, users: { some: { id } } },
-      cacheStrategy: { ttl: 60 },
+      where: { itemId: showId, users: { some: { id } } },
     });
     return true;
   } catch (err) {
