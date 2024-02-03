@@ -11,7 +11,7 @@ Screen-Time is a Telegram bot built with Typescript that provides movie and TV s
 
 ## 📣 Try it out
 
-Screen-Time bot is currently going through a rewrite to function on vercel serverless functions.
+You can try out Screen-Time bot by visiting this link: https://t.me/screentime_bot
 
 ## 📸 Screenshots
 
