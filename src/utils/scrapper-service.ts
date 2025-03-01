@@ -232,5 +232,3 @@ export const scrapeMovies = async () => {
   }
 };
 */
-
-console.log(await scrapeMovies())
