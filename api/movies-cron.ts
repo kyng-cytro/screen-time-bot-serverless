@@ -16,7 +16,6 @@ export default async function handler(
   if (request.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return response.status(401).end("Unauthorized");
   }
-
   const movies = await scrapeMovies();
   if (!movies.length)
     return response

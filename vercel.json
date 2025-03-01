@@ -9,6 +9,12 @@
       "schedule": "20 9 * * *"
     }
   ],
+  "functions": {
+    "api/webhook.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "outputDirectory": ".",
   "installCommand": "bun i --omit=dev",
   "buildCommand": "bun scripts/build.ts"
