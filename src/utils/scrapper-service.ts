@@ -2,8 +2,7 @@ import { load } from "cheerio";
 import { Followings, Movies, SearchResult, Shows } from "../types";
 import {
   formatDate,
-  generatePHPSESSID,
-  movieUrlTransform,
+  generatePHPSESSID,  
   trimSummary,
 } from "./helpers";
 
@@ -181,13 +180,8 @@ export const scrapeMovies = async () => {
       const movieLink = `https://www.metacritic.com${item
         .find("a")
         .attr("href")}`;
-
-      // NOTE: telegram doesn't like resulting link
-      // const movieImage = movieUrlTransform({
-      //   url: item.find("img").attr("src") || "",
-      // });
-
-      const movieImage = item.find("img").attr("src") || "";
+      console.log(item)
+      const movieImage = item.find("img").attr("src") || "https://placehold.co/600x400";
       const movieTitle = item.find("h3").text();
       const movieDate = item.find("span.c-finderProductCard_meta").text();
       const movieSummary = item
