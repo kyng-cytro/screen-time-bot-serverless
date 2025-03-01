@@ -10,6 +10,6 @@
     }
   ],
   "outputDirectory": ".",
-  "installCommand": "npm i --omit=dev",
-  "buildCommand": "npx ts-node scripts/build.ts"
+  "installCommand": "bun i --omit=dev",
+  "buildCommand": "bun scripts/build.ts"
 }
