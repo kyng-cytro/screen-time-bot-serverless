@@ -5,8 +5,7 @@
   "scripts": {
     "start": "bun src/bot.ts",
     "postinstall": "prisma generate --no-engine"
-  },
-  "type": "module",
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC",
