@@ -161,6 +161,35 @@ export const scrapeShows = async ({ userId }: { userId?: number }) => {
   }
 };
 
+export const scrapeMovies = async (apiKey = "1MOZgmNFxvmljaQR1X9KAij9Mo4xAY3u") => {
+  const movies: Movies = [];
+  const url = new URL(`https://backend.metacritic.com/finder/metacritic/web?sortBy=-metaScore&productType=movies&releaseType=in-theaters&page=1&releaseYearMin=1910&releaseYearMax=2025&lastTouchedInput=releaseYearMin&offset=0&limit=24&apiKey=${apiKey}`)
+  const res = await fetch(url)  
+  if (!res.ok){
+    console.error("Error grabbing movies")
+    return movies
+  }
+  const data = await res.json()
+  for(const item of data.data.items){
+    const link = `https://www.metacritic.com/movie/${item.slug}`
+    const image = `https://www.metacritic.com/a/img/${item.image.bucketType}${item.image.bucketPath}`
+    const title = item.title
+    const date = item.releaseDate
+    const summary = item. description
+    const data = {
+      link,
+      image,
+      title,
+      date: formatDate({ date }),
+      summary: trimSummary({ summary: summary, chars: 150 }),
+    }
+    movies.push(data);
+  }
+  return movies
+}
+
+/** 
+ * @deprecated
 export const scrapeMovies = async () => {
   try {
     const movies: Movies = [];
@@ -179,9 +208,8 @@ export const scrapeMovies = async () => {
       if (!$(item).attr("class")) continue;
       const movieLink = `https://www.metacritic.com${item
         .find("a")
-        .attr("href")}`;
-      console.log(item)
-      const movieImage = item.find("img").attr("src") || "https://placehold.co/600x400";
+        .attr("href")}`;            
+      const movieImage = item.find("img").attr("src") || "";
       const movieTitle = item.find("h3").text();
       const movieDate = item.find("span.c-finderProductCard_meta").text();
       const movieSummary = item
@@ -203,3 +231,6 @@ export const scrapeMovies = async () => {
     return [];
   }
 };
+*/
+
+console.log(await scrapeMovies())
